@@ -1,0 +1,1327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Testing — Complete Topper Notes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fraunces:wght@700;900&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+  :root {
+    --bg: #0c0c10;
+    --surface: #141418;
+    --surface2: #1c1c22;
+    --border: #28282f;
+    --accent: #64ffda;
+    --accent2: #ff6b6b;
+    --accent3: #ffd166;
+    --accent4: #a78bfa;
+    --accent5: #06d6a0;
+    --text: #e2e2ea;
+    --muted: #7a7a8e;
+    --heading: 'Fraunces', serif;
+    --body: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--body);
+    font-size: 14.5px;
+    line-height: 1.75;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(160deg, #0e1a2a 0%, #0c0c10 60%);
+    border-bottom: 2px solid var(--accent);
+    padding: 44px 52px 36px;
+    position: relative;
+    overflow: hidden;
+  }
+  .header::after {
+    content: 'TESTING';
+    position: absolute;
+    right: -24px;
+    bottom: -30px;
+    font-family: var(--heading);
+    font-size: 200px;
+    font-weight: 900;
+    color: rgba(100,255,218,0.03);
+    pointer-events: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+  .header .label {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent);
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .header h1 {
+    font-family: var(--heading);
+    font-size: 40px;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: -1px;
+    line-height: 1.1;
+  }
+  .header h1 span { color: var(--accent); }
+  .header .meta {
+    color: var(--muted);
+    font-size: 13px;
+    margin-top: 10px;
+    font-family: var(--mono);
+  }
+  .chips {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 18px;
+  }
+  .chip {
+    font-family: var(--mono);
+    font-size: 10px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .chip.g { background: rgba(100,255,218,0.1); color: var(--accent); border: 1px solid rgba(100,255,218,0.2); }
+  .chip.r { background: rgba(255,107,107,0.1); color: var(--accent2); border: 1px solid rgba(255,107,107,0.2); }
+  .chip.y { background: rgba(255,209,102,0.1); color: var(--accent3); border: 1px solid rgba(255,209,102,0.2); }
+  .chip.p { background: rgba(167,139,250,0.1); color: var(--accent4); border: 1px solid rgba(167,139,250,0.2); }
+
+  /* TOC */
+  .toc {
+    margin: 32px 44px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-top: 3px solid var(--accent3);
+    border-radius: 4px;
+    padding: 24px 28px;
+  }
+  .toc h2 {
+    font-family: var(--heading);
+    font-size: 18px;
+    color: var(--accent3);
+    margin-bottom: 14px;
+  }
+  .toc-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 6px 20px;
+  }
+  .toc a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: color .2s;
+  }
+  .toc a:hover { color: var(--accent); }
+  .toc-n {
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent3);
+    min-width: 22px;
+  }
+
+  /* CONTENT */
+  .content { padding: 0 44px 60px; }
+
+  /* TOPIC BLOCK */
+  .topic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    margin-bottom: 26px;
+    overflow: hidden;
+  }
+  .topic-head {
+    padding: 16px 26px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .topic-num {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--accent3);
+    min-width: 26px;
+    font-weight: 500;
+  }
+  .topic-title {
+    font-family: var(--heading);
+    font-size: 22px;
+    font-weight: 700;
+    flex: 1;
+  }
+  .topic-body { padding: 22px 26px; }
+
+  /* per-topic accent colors */
+  .t1 .topic-head { border-left: 4px solid var(--accent); }
+  .t1 .topic-title { color: var(--accent); }
+  .t2 .topic-head { border-left: 4px solid #ffd166; }
+  .t2 .topic-title { color: #ffd166; }
+  .t3 .topic-head { border-left: 4px solid #ff6b6b; }
+  .t3 .topic-title { color: #ff6b6b; }
+  .t4 .topic-head { border-left: 4px solid #a78bfa; }
+  .t4 .topic-title { color: #a78bfa; }
+  .t5 .topic-head { border-left: 4px solid #06d6a0; }
+  .t5 .topic-title { color: #06d6a0; }
+  .t6 .topic-head { border-left: 4px solid #4cc9f0; }
+  .t6 .topic-title { color: #4cc9f0; }
+  .t7 .topic-head { border-left: 4px solid #f77f00; }
+  .t7 .topic-title { color: #f77f00; }
+  .t8 .topic-head { border-left: 4px solid #f72585; }
+  .t8 .topic-title { color: #f72585; }
+
+  /* HEADINGS inside body */
+  h3 {
+    font-family: var(--heading);
+    font-size: 16px;
+    font-weight: 700;
+    margin: 20px 0 8px;
+    padding-bottom: 4px;
+    border-bottom: 1px dashed var(--border);
+  }
+  h3.teal { color: var(--accent); }
+  h3.yellow { color: var(--accent3); }
+  h3.red { color: var(--accent2); }
+  h3.purple { color: var(--accent4); }
+  h3.green { color: var(--accent5); }
+  h3.blue { color: #4cc9f0; }
+  h3.orange { color: #f77f00; }
+  h3.pink { color: #f72585; }
+
+  p { margin-bottom: 9px; }
+  ul, ol { padding-left: 20px; margin-bottom: 10px; }
+  li { margin-bottom: 4px; }
+  li::marker { color: var(--accent3); }
+
+  /* CALLOUTS */
+  .box {
+    border-radius: 4px;
+    padding: 13px 18px;
+    margin: 12px 0;
+    font-size: 13.5px;
+  }
+  .box label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .box.teal { background: rgba(100,255,218,0.07); border-left: 3px solid var(--accent); }
+  .box.teal label { color: var(--accent); }
+  .box.yellow { background: rgba(255,209,102,0.07); border-left: 3px solid var(--accent3); }
+  .box.yellow label { color: var(--accent3); }
+  .box.red { background: rgba(255,107,107,0.07); border-left: 3px solid var(--accent2); }
+  .box.red label { color: var(--accent2); }
+  .box.purple { background: rgba(167,139,250,0.07); border-left: 3px solid var(--accent4); }
+  .box.purple label { color: var(--accent4); }
+  .box.green { background: rgba(6,214,160,0.07); border-left: 3px solid var(--accent5); }
+  .box.green label { color: var(--accent5); }
+
+  /* MNEMONIC */
+  .mnem {
+    background: linear-gradient(135deg, rgba(167,139,250,0.08), rgba(100,255,218,0.06));
+    border: 1px solid rgba(167,139,250,0.25);
+    border-radius: 5px;
+    padding: 14px 18px;
+    margin: 12px 0;
+  }
+  .mnem label {
+    display: block;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent4);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  .mnem .big { font-family: var(--heading); font-size: 20px; color: var(--accent3); }
+  .mnem p { font-size: 13px; color: var(--muted); margin-top: 4px; margin-bottom: 0; }
+
+  /* FORMULA */
+  .formula {
+    background: #090910;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px 18px;
+    font-family: var(--mono);
+    font-size: 13px;
+    color: var(--accent);
+    line-height: 2;
+    margin: 10px 0;
+  }
+  .formula .lbl { color: var(--muted); font-size: 10px; display: block; margin-bottom: 4px; letter-spacing: 1px; text-transform: uppercase; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 13px; }
+  th {
+    background: var(--surface2);
+    color: var(--accent3);
+    font-family: var(--mono);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 9px 14px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 8px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:nth-child(even) td { background: rgba(255,255,255,0.018); }
+
+  /* CODE */
+  code {
+    font-family: var(--mono);
+    background: var(--surface2);
+    padding: 2px 6px;
+    border-radius: 3px;
+    font-size: 12.5px;
+    color: var(--accent);
+  }
+  pre {
+    background: #060609;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 14px;
+    font-family: var(--mono);
+    font-size: 12.5px;
+    color: #06d6a0;
+    overflow-x: auto;
+    line-height: 1.6;
+    margin: 10px 0;
+  }
+
+  /* STEPS */
+  .step { display: flex; gap: 12px; margin-bottom: 10px; align-items: flex-start; }
+  .snum {
+    min-width: 26px; height: 26px;
+    border-radius: 50%;
+    background: var(--accent3);
+    color: #000;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 3px;
+  }
+  .snum.g { background: var(--accent5); }
+  .snum.p { background: var(--accent4); }
+  .snum.t { background: var(--accent); }
+
+  /* COMPARE */
+  .compare { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+  .ccard { background: var(--surface2); border: 1px solid var(--border); border-radius: 4px; padding: 14px 16px; }
+  .ccard h4 { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid var(--border); }
+  .ccard.g h4 { color: var(--accent5); }
+  .ccard.r h4 { color: var(--accent2); }
+  .ccard.b h4 { color: #4cc9f0; }
+  .ccard.y h4 { color: var(--accent3); }
+  .ccard ul { padding-left: 16px; }
+  .ccard li { font-size: 13px; margin-bottom: 3px; }
+  .ccard.g li::marker { color: var(--accent5); }
+  .ccard.r li::marker { color: var(--accent2); }
+
+  /* EXAM BADGE */
+  .exam-flag {
+    display: inline-flex; align-items: center; gap: 5px;
+    background: rgba(255,107,107,0.1);
+    border: 1px solid rgba(255,107,107,0.25);
+    border-radius: 2px;
+    padding: 3px 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--accent2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 500;
+    margin-bottom: 8px;
+  }
+
+  hr { border: none; border-top: 1px dashed var(--border); margin: 18px 0; }
+
+  /* REVISION SHEET */
+  .revision {
+    background: #080812;
+    border: 2px solid var(--accent3);
+    border-radius: 8px;
+    padding: 32px 36px;
+    margin-bottom: 28px;
+    position: relative;
+  }
+  .revision::before {
+    content: '⚡ ULTRA-SHORT REVISION';
+    position: absolute;
+    top: -13px;
+    left: 20px;
+    background: var(--accent3);
+    color: #000;
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 12px;
+    letter-spacing: 2px;
+  }
+  .rev-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 16px; }
+  .rev-col h4 { font-family: var(--heading); font-size: 14px; color: var(--accent); margin-bottom: 8px; padding-bottom: 4px; border-bottom: 1px dashed var(--border); }
+  .rev-col li { font-size: 12.5px; margin-bottom: 3px; }
+
+  /* VIVA */
+  .viva { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 24px 28px; margin-bottom: 28px; }
+  .viva h2 { font-family: var(--heading); font-size: 22px; color: var(--accent2); margin-bottom: 14px; }
+  .vq { background: var(--surface2); border-left: 3px solid var(--accent4); padding: 9px 16px; margin-bottom: 9px; border-radius: 0 4px 4px 0; font-size: 13.5px; }
+
+  @media (max-width: 700px) {
+    .header, .content { padding-left: 18px; padding-right: 18px; }
+    .toc { margin: 20px 18px; }
+    .compare, .rev-grid { grid-template-columns: 1fr; }
+    .toc-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="label">📓 CSE · Junaed Younus Khan · BUET</div>
+  <h1>Software <span>Testing</span></h1>
+  <div class="meta">"You can't control what you can't measure" — 8 Core Topics · Exam-Ready Notes</div>
+  <div class="chips">
+    <span class="chip g">Exam-Ready</span>
+    <span class="chip y">8 Topics</span>
+    <span class="chip r">All Formulas</span>
+    <span class="chip p">JUnit + JMeter</span>
+    <span class="chip g">Security Attacks</span>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <h2>📌 Contents</h2>
+  <div class="toc-grid">
+    <div><a href="#t1"><span class="toc-n">01</span>Intro to Testing & Bug Basics</a></div>
+    <div><a href="#t2"><span class="toc-n">02</span>Testing Classifications</a></div>
+    <div><a href="#t3"><span class="toc-n">03</span>Equivalence Partitioning (EP)</a></div>
+    <div><a href="#t4"><span class="toc-n">04</span>Boundary Value Testing (BVT)</a></div>
+    <div><a href="#t5"><span class="toc-n">05</span>Static White-Box Testing</a></div>
+    <div><a href="#t6"><span class="toc-n">06</span>Dynamic White-Box & JUnit</a></div>
+    <div><a href="#t7"><span class="toc-n">07</span>System, Acceptance & Performance Testing</a></div>
+    <div><a href="#t8"><span class="toc-n">08</span>Secure Software (Attacks & Defenses)</a></div>
+    <div><a href="#revision"><span class="toc-n">⚡</span>Ultra-Short Revision Sheet</a></div>
+    <div><a href="#viva"><span class="toc-n">❓</span>Viva / Exam Questions</a></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ======================== TOPIC 1 ======================== -->
+<div class="topic t1" id="t1">
+  <div class="topic-head">
+    <span class="topic-num">01</span>
+    <span class="topic-title">Introduction to Testing & Bug Basics</span>
+    <span class="chip g">Foundation</span>
+  </div>
+  <div class="topic-body">
+
+    <div class="exam-flag">★ Core definitions — always asked</div>
+
+    <h3 class="teal">What Is Software Testing?</h3>
+    <p><strong>Definition:</strong> The systematic process of executing programs with the intent of <em>finding as many defects as possible</em>, and/or gaining sufficient confidence in the system under test.</p>
+    <div class="box yellow">
+      <label>Key Insight</label>
+      Testing is NOT about proving your program works. It's about <strong>discovering where it doesn't work</strong>.
+    </div>
+
+    <h3 class="yellow">5 Rules That Define a Bug</h3>
+    <table>
+      <thead><tr><th>#</th><th>Rule</th><th>Calculator Example</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td><strong>Missing Specified Functionality</strong> — doesn't do what spec says it should</td><td>Press + key → nothing happens</td></tr>
+        <tr><td>2</td><td><strong>Prohibited Behavior</strong> — does what spec says it shouldn't</td><td>Calculator freezes when keys are pounded</td></tr>
+        <tr><td>3</td><td><strong>Unspecified Actions</strong> — does something not in the spec</td><td>Programmer adds sqrt feature that wasn't in spec</td></tr>
+        <tr><td>4</td><td><strong>Missing Obvious Requirements</strong> — doesn't do something the spec forgot</td><td>No warning when battery is low → wrong results</td></tr>
+        <tr><td>5</td><td><strong>User Experience Issues</strong> — confusing, slow, or just doesn't feel right</td><td>Buttons too small; display unreadable in sunlight</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="red">Why Do Bugs Occur? (Root Causes)</h3>
+    <p>Studies consistently show bugs come from: <strong>Specifications (most) &gt; Design &gt; Code</strong></p>
+    <ul>
+      <li><strong>No spec written</strong> — many projects skip formal specifications entirely</li>
+      <li><strong>Incomplete specs</strong> — lack detail or thoroughness</li>
+      <li><strong>Constantly changing specs</strong> — evolve during development</li>
+      <li><strong>Poor communication</strong> — spec not shared with whole team</li>
+    </ul>
+    <div class="box red"><label>Classic Quote</label>"If you can't say it, you can't do it." — Spec bugs are the most costly because they cascade into design and code.</div>
+
+    <h3 class="yellow">Cost of Bugs: Logarithmic Growth</h3>
+    <p>Bug fix cost increases dramatically the later a bug is found: Specification &lt; Design &lt; Code &lt; Testing &lt; Production. Find bugs EARLY.</p>
+
+    <h3 class="teal">7 Testing Realities</h3>
+    <table>
+      <thead><tr><th>Reality</th><th>Key Point</th></tr></thead>
+      <tbody>
+        <tr><td>1. Testing is Impossible to Complete</td><td>Inputs, outputs, paths, and spec subjectivity are all huge/infinite</td></tr>
+        <tr><td>2. Testing is Risk-Based</td><td>Not testing every case = accepting risk; balance is key</td></tr>
+        <tr><td>3. Can't Prove No Bugs Exist</td><td>Finding no bugs ≠ no bugs. Like a house inspector finding nothing.</td></tr>
+        <tr><td>4. More Bugs = More Nearby</td><td>Bugs cluster (bad days, repeated mistakes, design issues)</td></tr>
+        <tr><td>5. Pesticide Paradox</td><td>Reusing same tests stops finding bugs (Boris Beizer, 1990). Keep writing NEW tests.</td></tr>
+        <tr><td>6. Specs Are Never Final</td><td>Assume the spec will change. Features added/removed always.</td></tr>
+        <tr><td>7. Not All Bugs Get Fixed</td><td>Business decisions: not enough time, too risky to fix, not worth it</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="purple">Famous Bug Case Studies</h3>
+    <ul>
+      <li><strong>Mars Climate Orbiter ($125M, 1999):</strong> One team used metric units (Newton-seconds); another assumed imperial (pound-seconds). Spacecraft destroyed. Lesson: errors at interface between correct subsystems.</li>
+      <li><strong>Intel Pentium FDIV Bug (1994):</strong> Known before release; team decided it was too rare to fix; became massive PR disaster.</li>
+      <li><strong>Excel Leap Year Bug:</strong> Excel wrongly treats 1900 as a leap year. Intentionally kept for backward compatibility — billions of spreadsheets would break if fixed.</li>
+    </ul>
+
+    <h3 class="teal">Tester Traits</h3>
+    <p>Explorer, Troubleshooter, Relentless, Creative, Perfectionist, Good Judgment, Programming Knowledge, Domain Expertise, Tactful & Diplomatic, Persuasive.</p>
+
+  </div>
+</div>
+
+<!-- ======================== TOPIC 2 ======================== -->
+<div class="topic t2" id="t2">
+  <div class="topic-head">
+    <span class="topic-num">02</span>
+    <span class="topic-title">Classifications of Software Testing</span>
+    <span class="chip y">Conceptual</span>
+  </div>
+  <div class="topic-body">
+
+    <div class="exam-flag">★ Know all 4 dimensions + "What You Already Knew" table</div>
+
+    <h3 class="yellow">Dimension 1: Process (How You Test)</h3>
+    <div class="compare">
+      <div class="ccard g">
+        <h4>✅ Human-Based / Exploratory</h4>
+        <ul>
+          <li>No predefined test cases</li>
+          <li>Test design, execution, and learning happen simultaneously</li>
+          <li>Testers actively explore the system</li>
+        </ul>
+      </div>
+      <div class="ccard b">
+        <h4>📋 Criteria-Based</h4>
+        <ul>
+          <li>Systematic rules and measurable criteria</li>
+          <li>Structured; driven by clearly defined goals</li>
+          <li>Test cases planned in advance</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="yellow">Dimension 2: Knowledge (What You Know)</h3>
+    <div class="compare">
+      <div class="ccard g">
+        <h4>⬛ Black-Box Testing</h4>
+        <ul>
+          <li>Only knows what software should do</li>
+          <li>Cannot see internal code</li>
+          <li>Input → Output verification</li>
+          <li>Also: functional or behavioral testing</li>
+          <li><em>Example: Type √3.14159 in Calculator, verify output</em></li>
+        </ul>
+      </div>
+      <div class="ccard r">
+        <h4>⬜ White-Box Testing</h4>
+        <ul>
+          <li>Has access to source code</li>
+          <li>Uses code knowledge to tailor tests</li>
+          <li>Also: clear-box testing</li>
+          <li><strong>Risk:</strong> Bias — tests may match code rather than spec</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="yellow">Dimension 3: Execution (Running the Program?)</h3>
+    <div class="compare">
+      <div class="ccard g">
+        <h4>🔄 Dynamic Testing</h4>
+        <ul><li>Program is running</li><li>What most people think of as "testing"</li></ul>
+      </div>
+      <div class="ccard b">
+        <h4>📄 Static Testing</h4>
+        <ul><li>Examining without running</li><li>Reviews, inspections, reading specs</li></ul>
+      </div>
+    </div>
+
+    <h3 class="yellow">Dimension 4: Scope (How Much?)</h3>
+    <table>
+      <thead><tr><th>Level</th><th>Focus</th><th>Key Question</th></tr></thead>
+      <tbody>
+        <tr><td>Unit Testing</td><td>Individual function/class</td><td>Does this function work in isolation?</td></tr>
+        <tr><td>Integration Testing</td><td>Module interactions</td><td>Do these components work together?</td></tr>
+        <tr><td>System Testing</td><td>Complete product</td><td>Does the complete product work?</td></tr>
+        <tr><td>Acceptance Testing</td><td>Customer validation</td><td>Does this meet customer expectations?</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="teal">What You Already Knew (Name Mapping)</h3>
+    <table>
+      <thead><tr><th>What You Already Did</th><th>Formal Name</th></tr></thead>
+      <tbody>
+        <tr><td>Running with different inputs</td><td>Black-box testing</td></tr>
+        <tr><td>Tracing code line by line</td><td>White-box testing</td></tr>
+        <tr><td>Using printf to check values</td><td>Debugging</td></tr>
+        <tr><td>Testing after changing code</td><td>Regression testing</td></tr>
+        <tr><td>Testing small units like a function</td><td>Unit testing</td></tr>
+        <tr><td>Giving code to a friend to try</td><td>User testing</td></tr>
+        <tr><td>Submitting to online judge</td><td>Stress testing</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="purple">Test-to-Pass vs Test-to-Fail</h3>
+    <div class="compare">
+      <div class="ccard g">
+        <h4>Test-to-Pass</h4>
+        <ul><li>Simplest, most straightforward test cases</li><li>Verify software minimally works under normal conditions</li><li><strong>Always run these FIRST</strong></li></ul>
+      </div>
+      <div class="ccard r">
+        <h4>Test-to-Fail (Error-Forcing)</h4>
+        <ul><li>Deliberately designed to break the software</li><li>Run after test-to-pass cases succeed</li></ul>
+      </div>
+    </div>
+
+    <div class="box teal">
+      <label>Test Case vs Test Suite</label>
+      <strong>Test case:</strong> A set of inputs + expected outputs (oracle) for a unit/module/system.<br>
+      <strong>Test suite (test set):</strong> A set of test cases.
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== TOPIC 3 ======================== -->
+<div class="topic t3" id="t3">
+  <div class="topic-head">
+    <span class="topic-num">03</span>
+    <span class="topic-title">Equivalence Partitioning (EP)</span>
+    <span class="chip r">Calculation</span>
+  </div>
+  <div class="topic-body">
+
+    <div class="exam-flag">★ Most exam-heavy topic — know Weak vs Strong, NextDate, Quadratic examples</div>
+
+    <h3 class="red">Core Concept</h3>
+    <p><strong>Equivalence Partitioning:</strong> Dividing the huge (infinite) input space into groups where values <em>inside a group behave similarly</em>. Testing one representative from each partition is sufficient.</p>
+    <div class="box teal">
+      <label>Why it Works</label>
+      If all values in a partition behave identically, finding one bug from that partition reveals the same bug for all values in it. Testing (10,2), (1000,-5), (7,6) for max() when a&gt;b — only need ONE of them.
+    </div>
+
+    <h3 class="red">The Two Trivial Partitions (Always Exist)</h3>
+    <div class="compare">
+      <div class="ccard g">
+        <h4>✅ Expected / Legal Inputs (E)</h4>
+        <ul><li>Correct format, valid range, proper type</li><li>Can further subdivide: E1, E2, E3…</li></ul>
+      </div>
+      <div class="ccard r">
+        <h4>❌ Unexpected / Invalid Inputs (U)</h4>
+        <ul><li>Wrong format, out of range, nonsensical</li><li>App must handle gracefully; further subdivide: U1, U2…</li></ul>
+      </div>
+    </div>
+
+    <h3 class="yellow">Weak vs Strong ECT</h3>
+    <div class="formula">
+      <span class="lbl">Formulas</span>
+      Weak ECT  → Test Cases = max(|A|, |B|, |C|, ...)   ← one value from each class, no combos<br>
+      Strong ECT → Test Cases = |A| × |B| × |C| × ...   ← ALL combinations tested
+    </div>
+
+    <h3 class="teal">Example 1: Online Order Discount System</h3>
+    <p><code>calculateFinalPrice(age, membershipType)</code></p>
+    <ul>
+      <li>Age partitions: A1 (age &lt; 18), A2 (18–60), A3 (&gt; 60) → 3 classes</li>
+      <li>Membership: M1 (Regular), M2 (Premium) → 2 classes</li>
+    </ul>
+    <div class="compare">
+      <div class="ccard y">
+        <h4>Weak ECT → 3 test cases</h4>
+        <ul>
+          <li>Age &lt; 18, Regular</li>
+          <li>Age 18–60, Premium</li>
+          <li>Age &gt; 60, Regular</li>
+        </ul>
+      </div>
+      <div class="ccard b">
+        <h4>Strong ECT → 3×2 = 6 test cases</h4>
+        <ul>
+          <li>(A1,M1), (A1,M2)</li>
+          <li>(A2,M1), (A2,M2)</li>
+          <li>(A3,M1), (A3,M2)</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="teal">Example 2: NextDate Function (3 variables)</h3>
+    <p>Computes the next date. Year range: 1824–2024.</p>
+    <table>
+      <thead><tr><th>Variable</th><th>Equivalence Classes</th></tr></thead>
+      <tbody>
+        <tr><td>Month (M)</td><td>M1: 30-day months · M2: 31-day months · M3: February → 3 classes</td></tr>
+        <tr><td>Day (D)</td><td>D1: 1–28 · D2: 29 · D3: 30 · D4: 31 → 4 classes</td></tr>
+        <tr><td>Year (Y)</td><td>Y1: 1900 (special centennial) · Y2: other leap years · Y3: non-leap years → 3 classes</td></tr>
+      </tbody>
+    </table>
+    <div class="formula">
+      Weak ECT = max(3, 4, 3) = <strong>4 test cases</strong><br>
+      Strong ECT = 3 × 4 × 3 = <strong>36 test cases</strong>
+    </div>
+
+    <h3 class="teal">Example 3: Quadratic Equation (Behavioral Partitioning)</h3>
+    <p>ax² + bx + c = 0, Discriminant D = b² − 4ac</p>
+    <table>
+      <thead><tr><th>Partition</th><th>a</th><th>b</th><th>c</th><th>Expected Result</th></tr></thead>
+      <tbody>
+        <tr><td>a = 0</td><td>0</td><td>2</td><td>1</td><td>Linear equation (special case)</td></tr>
+        <tr><td>D &gt; 0 (two real roots)</td><td>1</td><td>5</td><td>6</td><td>x = −2, −3</td></tr>
+        <tr><td>D = 0 (one repeated root)</td><td>1</td><td>2</td><td>1</td><td>x = −1</td></tr>
+        <tr><td>D &lt; 0 (complex roots)</td><td>1</td><td>2</td><td>3</td><td>Complex roots</td></tr>
+      </tbody>
+    </table>
+    <div class="box green"><label>Insight</label>Only 4 tests cover ALL behavioral scenarios. Behavioral partitioning &gt; range partitioning when code paths differ.</div>
+
+    <h3 class="red">Leap Year Equivalence Classes (Exam Favorite)</h3>
+    <table>
+      <thead><tr><th>Class</th><th>Condition</th><th>Examples</th><th>Expected</th></tr></thead>
+      <tbody>
+        <tr><td>C1</td><td>Divisible by 400</td><td>1600, 2000</td><td>Leap year ✅</td></tr>
+        <tr><td>C2</td><td>Divisible by 100, NOT 400</td><td>1700, 1900</td><td>NOT leap year ❌</td></tr>
+        <tr><td>C3</td><td>Divisible by 4, NOT 100</td><td>1996, 2024</td><td>Leap year ✅</td></tr>
+        <tr><td>C4</td><td>Not divisible by 4</td><td>1999, 2023</td><td>NOT leap year ❌</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box red">
+      <label>⚠️ Warning</label>
+      Don't over-partition — you may eliminate tests that reveal bugs. Always have an experienced tester review your equivalence classes.
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== TOPIC 4 ======================== -->
+<div class="topic t4" id="t4">
+  <div class="topic-head">
+    <span class="topic-num">04</span>
+    <span class="topic-title">Boundary Value Testing (BVT)</span>
+    <span class="chip r">Calculation</span>
+  </div>
+  <div class="topic-body">
+
+    <div class="exam-flag">★ BVT formula + 7 boundary points are almost always tested</div>
+
+    <h3 class="purple">Why BVT?</h3>
+    <p>Experience shows programmers frequently make mistakes at the <em>edges</em> of equivalence classes. BVT is complementary to EP — while EP picks values from within a partition, BVT picks values AT and NEAR boundaries.</p>
+    <div class="box yellow">
+      <label>Classic Off-by-One Bug</label>
+      <code>if (x &lt; 0)</code> when it should be <code>if (x &lt;= 0)</code>. Only x=0 (the boundary) reveals this bug!
+    </div>
+
+    <h3 class="purple">The 7 Boundary Points</h3>
+    <div class="formula">
+      <span class="lbl">For a valid range [LB, UB]</span>
+      BLB = Just BELOW lower bound   (e.g., LB − 1)<br>
+      LB  = Lower Bound itself<br>
+      ALB = Just ABOVE lower bound   (e.g., LB + 1)<br>
+      NOM = Nominal (typical value in middle)<br>
+      BUB = Just BELOW upper bound   (e.g., UB − 1)<br>
+      UB  = Upper Bound itself<br>
+      AUB = Just ABOVE upper bound   (e.g., UB + 1)
+      <br><br>
+      <span class="lbl">Test Case Count Formula</span>
+      BVT Test Cases = 4n + 1   where n = number of input variables<br>
+      (For n=2: 4×2+1 = <strong>9 test cases</strong>)
+    </div>
+
+    <h3 class="teal">BVT: 9 Test Cases for f(x, y) where a≤x≤b, c≤y≤d</h3>
+    <table>
+      <thead><tr><th>TC</th><th>x</th><th>y</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>x_NOM</td><td>y_LB</td></tr>
+        <tr><td>2</td><td>x_NOM</td><td>y_ALB</td></tr>
+        <tr><td>3</td><td>x_NOM</td><td>y_NOM</td></tr>
+        <tr><td>4</td><td>x_NOM</td><td>y_BUB</td></tr>
+        <tr><td>5</td><td>x_NOM</td><td>y_UB</td></tr>
+        <tr><td>6</td><td>x_LB</td><td>y_NOM</td></tr>
+        <tr><td>7</td><td>x_ALB</td><td>y_NOM</td></tr>
+        <tr><td>8</td><td>x_BUB</td><td>y_NOM</td></tr>
+        <tr><td>9</td><td>x_UB</td><td>y_NOM</td></tr>
+      </tbody>
+    </table>
+    <p><em>Pattern: Hold all variables at NOM, vary one variable across all its boundary points.</em></p>
+
+    <h3 class="yellow">Solved Example: Font Identifier</h3>
+    <p>Specs: (1) Alphanumeric only, (2) 3–15 characters, (3) First 2 must be letters.</p>
+    <table>
+      <thead><tr><th>Case</th><th>Input</th><th>Condition(s)</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>abc1</td><td>Valid, Nominal</td><td>PASS ✅</td></tr>
+        <tr><td>2</td><td>ab1</td><td>LB (length=3)</td><td>PASS ✅</td></tr>
+        <tr><td>3</td><td>abcdef123456789</td><td>UB (length=15)</td><td>PASS ✅</td></tr>
+        <tr><td>4</td><td>abcde123456789</td><td>BUB (length=14)</td><td>PASS ✅</td></tr>
+        <tr><td>5</td><td>12*</td><td>First 2 chars not letters</td><td>FAIL ❌</td></tr>
+        <tr><td>6</td><td>¥©*</td><td>Non-alphanumeric</td><td>FAIL ❌</td></tr>
+        <tr><td>7</td><td>ab</td><td>AUB of invalid (length=2)</td><td>FAIL ❌</td></tr>
+        <tr><td>8</td><td>abcdedgh1234567890</td><td>AUB of invalid (length=18)</td><td>FAIL ❌</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="teal">Sub-Boundary Conditions (Internal)</h3>
+    <p>Boundaries that are internal to software — not visible in the spec but critical:</p>
+    <div class="compare">
+      <div class="ccard y">
+        <h4>Powers of Two</h4>
+        <ul>
+          <li>Bit: 0 or 1</li>
+          <li>Byte: 0–255</li>
+          <li>Word: 0–4,294,967,295</li>
+          <li>Kilo = 1,024; Mega = 1,048,576</li>
+        </ul>
+      </div>
+      <div class="ccard b">
+        <h4>ASCII Boundaries</h4>
+        <ul>
+          <li>Digits: 48–57 ('0'–'9'); '/' = 47; ':' = 58</li>
+          <li>Uppercase: 65–90 (A–Z); '@' = 64; '[' = 91</li>
+          <li>Lowercase: 97–122 (a–z); '`' = 96; '{' = 123</li>
+          <li>Test chars just outside these ranges!</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="red">Empty / Null / Zero — Special Partition</h3>
+    <p>When user hits Enter without typing anything → create a <em>separate equivalence class</em> for this. It follows a different code path than typing 0 or –1.</p>
+
+    <div class="box purple">
+      <label>BVT Limitation</label>
+      BVT tests only ONE variable at a time. Does NOT cover variable interactions. For interacting variables, use Combinatorial BVT (expensive).
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== TOPIC 5 ======================== -->
+<div class="topic t5" id="t5">
+  <div class="topic-head">
+    <span class="topic-num">05</span>
+    <span class="topic-title">Static White-Box Testing & Spec Review</span>
+    <span class="chip p">Review</span>
+  </div>
+  <div class="topic-body">
+
+    <h3 class="green">Static Black-Box: Testing the Spec</h3>
+    <p><strong>Definition:</strong> Reviewing the product specification (not running code) for bugs. The spec is the earliest and cheapest place to find bugs.</p>
+
+    <h3 class="green">8 Attributes of a Good Spec (Checklist)</h3>
+    <div class="mnem">
+      <label>🧠 Mnemonic — "Complete Cats Play Contrary Roles For Certain Tests"</label>
+      <div class="big">C · A · P · C · R · F · C · T</div>
+      <p><strong>C</strong>omplete · <strong>A</strong>ccurate · <strong>P</strong>recise/Clear · <strong>C</strong>onsistent · <strong>R</strong>elevant · <strong>F</strong>easible · <strong>C</strong>ode-Free · <strong>T</strong>estable</p>
+    </div>
+
+    <h3 class="yellow">Dangerous Terminology in Specs (Red Flags)</h3>
+    <table>
+      <thead><tr><th>Word Type</th><th>Examples</th><th>Problem</th></tr></thead>
+      <tbody>
+        <tr><td>Absolutes</td><td>Always, Every, All, None, Never</td><td>Think of cases that violate the claim</td></tr>
+        <tr><td>Vague Quantifiers</td><td>Some, Sometimes, Often, Usually</td><td>Cannot be tested or verified</td></tr>
+        <tr><td>Open Lists</td><td>Etc., And so forth, Such as</td><td>Incomplete; must be fully specified</td></tr>
+        <tr><td>Unquantifiable</td><td>Good, Fast, Cheap, Efficient, Stable</td><td>Needs measurable criteria to be testable</td></tr>
+        <tr><td>Incomplete Logic</td><td>If… Then… (no Else)</td><td>What happens when the IF condition is false?</td></tr>
+        <tr><td>Hidden Functionality</td><td>Handled, Processed, Rejected, Skipped</td><td>Hides large amounts of unspecified behavior</td></tr>
+      </tbody>
+    </table>
+
+    <hr>
+
+    <h3 class="teal">Static White-Box: Examining Code</h3>
+    <p><strong>Definition:</strong> Carefully and methodically reviewing software design, architecture, or code for bugs <em>without executing it</em>. Also called structural analysis.</p>
+
+    <h3 class="yellow">3 Types of Formal Reviews</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Formality</th><th>Key Feature</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Peer Review</strong></td><td>Least formal</td><td>Programmer + 1–2 others ("buddy review"). Still needs all 4 review elements.</td></tr>
+        <tr><td><strong>Walkthrough</strong></td><td>Medium</td><td>Programmer formally presents code to 4–5 people; advance distribution; written report after. Include a senior programmer.</td></tr>
+        <tr><td><strong>Inspection</strong></td><td>Most formal</td><td>A DIFFERENT person presents the code (not the author). Requires training. Most effective at finding bugs.</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box green">
+      <label>4 Elements of All Formal Reviews</label>
+      1. <strong>Identify Problems</strong> (criticism at code, not the person) &nbsp;|&nbsp;
+      2. <strong>Follow Rules</strong> (fixed set of review rules) &nbsp;|&nbsp;
+      3. <strong>Prepare</strong> (most problems found DURING preparation, not at meeting) &nbsp;|&nbsp;
+      4. <strong>Write a Report</strong> (distribute to team)
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== TOPIC 6 ======================== -->
+<div class="topic t6" id="t6">
+  <div class="topic-head">
+    <span class="topic-num">06</span>
+    <span class="topic-title">Dynamic White-Box Testing, Code Coverage & JUnit</span>
+    <span class="chip g">Code</span>
+  </div>
+  <div class="topic-body">
+
+    <div class="exam-flag">★ Statement / Branch / Condition coverage + JUnit assert methods are exam favourites</div>
+
+    <h3 class="blue">Dynamic White-Box Testing</h3>
+    <p>Running the software WITH knowledge of the internal code to determine what to test, what not to test, and how to approach testing.</p>
+
+    <h3 class="blue">Unit → Integration → System</h3>
+    <div class="step"><div class="snum t">1</div><div><strong>Unit Testing:</strong> Test each module/function individually in isolation</div></div>
+    <div class="step"><div class="snum t">2</div><div><strong>Integration Testing:</strong> Combine modules and test their interactions</div></div>
+    <div class="step"><div class="snum t">3</div><div><strong>System Testing:</strong> Test the complete integrated product</div></div>
+
+    <div class="compare">
+      <div class="ccard g">
+        <h4>Bottom-Up Testing</h4>
+        <ul>
+          <li>Test low-level modules first</li>
+          <li>Use <strong>Test Drivers</strong> to simulate higher-level callers</li>
+          <li>Very thorough low-level testing</li>
+        </ul>
+      </div>
+      <div class="ccard b">
+        <h4>Top-Down Testing</h4>
+        <ul>
+          <li>Test high-level modules first</li>
+          <li>Use <strong>Test Stubs</strong> to simulate lower-level modules</li>
+          <li>Example: fake temperature sensor returns hardcoded values</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="blue">Code Coverage Types (3 levels)</h3>
+
+    <table>
+      <thead><tr><th>Coverage Type</th><th>Goal</th><th>Limitation</th><th>Test Cases Needed</th></tr></thead>
+      <tbody>
+        <tr>
+          <td><strong>Statement Coverage</strong></td>
+          <td>Execute every statement at least once</td>
+          <td>Doesn't ensure all paths are taken</td>
+          <td>Minimum; simplest</td>
+        </tr>
+        <tr>
+          <td><strong>Branch Coverage</strong></td>
+          <td>Every branch (true/false of every if) executed</td>
+          <td>Doesn't handle compound conditions</td>
+          <td>Requires both true/false for each branch</td>
+        </tr>
+        <tr>
+          <td><strong>Condition Coverage</strong></td>
+          <td>Every individual condition in compound expression tested T/F</td>
+          <td>Can be expensive for many conditions</td>
+          <td>2ⁿ for n conditions (True-True, True-False, False-True, False-False)</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3 class="yellow">Condition Coverage Example</h3>
+    <pre>IF Date$ = "01-01-2000" AND Time$ = "00:00:00" THEN ...</pre>
+    <table>
+      <thead><tr><th>Date$</th><th>Time$</th><th>Condition</th></tr></thead>
+      <tbody>
+        <tr><td>01-01-1999</td><td>11:11:11</td><td>False-False</td></tr>
+        <tr><td>01-01-1999</td><td>00:00:00</td><td>False-True</td></tr>
+        <tr><td>01-01-2000</td><td>11:11:11</td><td>True-False</td></tr>
+        <tr><td>01-01-2000</td><td>00:00:00</td><td>True-True ✅ (only this executes THEN)</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="blue">Code Coverage Analyzers Tell You:</h3>
+    <ul>
+      <li>Which code was NOT covered (write more tests!)</li>
+      <li>Which tests are REDUNDANT (same partition — remove)</li>
+      <li>Which new test cases are needed</li>
+    </ul>
+
+    <hr>
+
+    <h3 class="teal">JUnit — Java Unit Testing Framework</h3>
+    <p>Open-source; integrates with Eclipse. Green bar = all pass; Red bar = failure. Annotations drive test execution.</p>
+
+    <h3 class="yellow">JUnit Assert Methods</h3>
+    <table>
+      <thead><tr><th>Method</th><th>Fails When</th></tr></thead>
+      <tbody>
+        <tr><td><code>assertTrue("msg", condition)</code></td><td>condition is false</td></tr>
+        <tr><td><code>assertFalse("msg", condition)</code></td><td>condition is true</td></tr>
+        <tr><td><code>assertEquals("msg", expected, actual)</code></td><td>values not equal (use <code>.equals()</code>)</td></tr>
+        <tr><td><code>assertSame("msg", expected, actual)</code></td><td>not same object (<code>!=</code>)</td></tr>
+        <tr><td><code>assertNotSame("msg", expected, actual)</code></td><td>same object (<code>==</code>)</td></tr>
+        <tr><td><code>assertNull("msg", value)</code></td><td>value is not null</td></tr>
+        <tr><td><code>assertNotNull("msg", value)</code></td><td>value is null</td></tr>
+        <tr><td><code>fail("msg")</code></td><td>Always — used for incomplete tests</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box teal">
+      <label>JUnit Best Practices</label>
+      Use EP and BVT to select test inputs · Test ONE thing per test method · Avoid logic (if/else, loops) in tests · Give methods LONG descriptive names · Expected value always on LEFT in assertEquals · Always include messages for better failure output
+    </div>
+
+    <div class="box red">
+      <label>⚠️ Common Confusion</label>
+      JUnit does NOT guarantee test method execution order. Tests must be self-contained — do NOT write Test A that must run before Test B.
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== TOPIC 7 ======================== -->
+<div class="topic t7" id="t7">
+  <div class="topic-head">
+    <span class="topic-num">07</span>
+    <span class="topic-title">System, Acceptance & Performance Testing</span>
+    <span class="chip y">Applied</span>
+  </div>
+  <div class="topic-body">
+
+    <h3 class="orange">System Testing</h3>
+    <p>Evaluates the <strong>fully integrated system as a whole</strong> from the user's perspective (black-box). Verifies functional + non-functional requirements.</p>
+
+    <h3 class="orange">Types of System Testing</h3>
+    <table>
+      <thead><tr><th>Type</th><th>What It Tests</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Functional</strong></td><td>All specified features work correctly end-to-end</td><td>Login → Search → Order → Pay flow</td></tr>
+        <tr><td><strong>Performance</strong></td><td>Behavior under different workloads</td><td>1000 users booking simultaneously</td></tr>
+        <tr><td><strong>Security</strong></td><td>Protection from unauthorized access/attacks</td><td>SQL injection, password strength, MFA</td></tr>
+        <tr><td><strong>Compatibility</strong></td><td>Works on different browsers/OS/devices</td><td>Chrome, Firefox, Safari; Windows, macOS</td></tr>
+        <tr><td><strong>Usability</strong></td><td>Intuitive and easy for real users</td><td>Can users navigate without training?</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="orange">Acceptance Testing: Alpha vs Beta</h3>
+    <div class="compare">
+      <div class="ccard g">
+        <h4>Alpha Testing</h4>
+        <ul>
+          <li>Conducted IN-HOUSE (dev/QA team + sometimes client reps)</li>
+          <li>Simulated environment</li>
+          <li>Developers monitor and fix issues in real-time</li>
+        </ul>
+      </div>
+      <div class="ccard b">
+        <h4>Beta Testing</h4>
+        <ul>
+          <li>Conducted by REAL USERS outside the organization</li>
+          <li>Real-world environment</li>
+          <li>Limited release; users report bugs and feedback</li>
+        </ul>
+      </div>
+    </div>
+
+    <hr>
+
+    <h3 class="orange">Performance Testing — Types</h3>
+    <table>
+      <thead><tr><th>Type</th><th>Goal</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>Load Testing</strong></td><td>Verify system under EXPECTED workload</td><td>5,000 expected users → does it meet SLAs?</td></tr>
+        <tr><td><strong>Stress Testing</strong></td><td>Find the BREAKING POINT (exceeds normal)</td><td>Ramp to 10,000 users; find when it crashes</td></tr>
+        <tr><td><strong>Endurance / Soak Testing</strong></td><td>Sustained load over LONG duration</td><td>3,000 users for 12 hours → detect memory leaks</td></tr>
+        <tr><td><strong>Spike Testing</strong></td><td>Sudden SURGE in traffic</td><td>1,000 → 5,000 users for 20 seconds (flash sale)</td></tr>
+        <tr><td><strong>Scalability Testing</strong></td><td>How performance changes when resources INCREASE</td><td>1 server: 2K users; 2 servers: 4K users?</td></tr>
+      </tbody>
+    </table>
+
+    <h3 class="orange">Key Performance Metrics</h3>
+    <div class="formula">
+      <span class="lbl">Definitions + Examples</span>
+      Response Time  = Time from request to response  (e.g., 350 ms)<br>
+      Throughput     = Requests processed per second  (e.g., 45 req/sec = 450 req / 10 sec)<br>
+      Error Rate     = Failed requests / Total requests × 100%  (e.g., 50/10,000 = 0.5%)<br>
+      Concurrent Users = Number of users active simultaneously (e.g., 5,000 students logging in)
+    </div>
+
+    <h3 class="yellow">Resource Utilization Metrics</h3>
+    <p>Monitor during perf tests: CPU (%), Memory (%), Disk I/O (ops/sec), Network Bandwidth (Mbps). Spikes = bottlenecks.</p>
+
+    <hr>
+
+    <h3 class="teal">Apache JMeter (Performance Testing Tool)</h3>
+    <p>Industry-standard open-source tool. Simulates virtual users; measures response time, throughput, error rate.</p>
+    <h3 class="teal">JMeter Structure</h3>
+    <ul>
+      <li><strong>Test Plan:</strong> Top-level container for all settings</li>
+      <li><strong>Thread Group:</strong> Defines virtual users (threads), ramp-up time, loop count</li>
+      <li><strong>Sampler:</strong> Defines request (HTTP Request — method, path, body)</li>
+      <li><strong>Listener:</strong> Captures results (View Results Tree = per-request; Summary Report = aggregates)</li>
+      <li><strong>CSV Data Set Config:</strong> Feed unique credentials per virtual user</li>
+    </ul>
+
+    <div class="compare">
+      <div class="ccard y">
+        <h4>Load Test Config</h4>
+        <ul><li>Threads: 500</li><li>Ramp-Up: 60 sec</li><li>Loop: 10</li><li>→ Simulates 5,000 login events</li></ul>
+      </div>
+      <div class="ccard r">
+        <h4>Stress Test Config</h4>
+        <ul><li>Threads: 1000</li><li>Ramp-Up: 60 sec</li><li>Loop: 10</li><li>→ Push beyond capacity to find break point</li></ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ======================== TOPIC 8 ======================== -->
+<div class="topic t8" id="t8">
+  <div class="topic-head">
+    <span class="topic-num">08</span>
+    <span class="topic-title">Secure Software Development (Threats & Defenses)</span>
+    <span class="chip r">Security</span>
+  </div>
+  <div class="topic-body">
+
+    <div class="exam-flag">★ CIA Triad + all 4 attack types with defenses are frequently tested</div>
+
+    <h3 class="pink">CIA Triad — 3 Pillars of Security</h3>
+    <div class="mnem">
+      <label>🧠 Mnemonic</label>
+      <div class="big">C · I · A</div>
+      <p><strong>C</strong>onfidentiality — Data not disclosed to unauthorized parties (even partial leakage = compromise)<br>
+      <strong>I</strong>ntegrity — Data/code not created, modified, or destroyed by unauthorized parties<br>
+      <strong>A</strong>vailability — Authorized users can access system when needed (disruption = security failure)</p>
+    </div>
+
+    <h3 class="pink">Threat Modeling</h3>
+    <p>Proactively thinking in advance about: how the system could be attacked, what's worth attacking, and what defenses to build IN BEFORE the attack.</p>
+
+    <hr>
+
+    <h3 class="red">Attack 1: Brute Force</h3>
+    <p><strong>How:</strong> Systematically try passwords until one works. No exploit needed — just repeated guessing.</p>
+    <p><strong>Why it works:</strong> Weak passwords allowed; unlimited login attempts; no rate limiting; no lockout; no CAPTCHA/MFA.</p>
+    <div class="box green">
+      <label>Defenses</label>
+      Strong password policy (min length, complexity, screen against weak passwords) ·
+      Rate limiting + account lockout after N failures ·
+      CAPTCHA to block bots ·
+      MFA so correct password alone is insufficient
+    </div>
+
+    <hr>
+
+    <h3 class="red">Attack 2: Denial of Service (DoS / DDoS)</h3>
+    <p><strong>DoS:</strong> Single source overwhelms system. <strong>DDoS:</strong> Botnet of thousands of compromised machines — makes source blocking ineffective.</p>
+    <p><strong>Effect:</strong> Server handling 100 req/sec receives 10,000 req/sec → crashes or becomes unresponsive → attacks Availability (CIA).</p>
+    <div class="box green">
+      <label>Defenses</label>
+      1. Source-based Blocking — filter traffic from suspicious IPs<br>
+      2. Rate Limiting — throttle requests per IP per time window<br>
+      3. Traffic Filtering — inspect for anomalous patterns/signatures<br>
+      4. Load Balancing + Auto-scaling — distribute traffic; no single node fails alone
+    </div>
+
+    <hr>
+
+    <h3 class="red">Attack 3: Buffer Overflow</h3>
+    <p><strong>What:</strong> Writing MORE data into a fixed-size buffer than it can hold — excess spills into adjacent memory, overwriting other variables or return addresses.</p>
+    <pre>char name[8];      // 8 bytes allocated
+strcpy(name, "AAAAAAAAAAAAAAAAAA"); // 20 chars → OVERFLOW
+// Adjacent memory (e.g., isAuthenticated flag) gets overwritten!</pre>
+    <p><strong>What attacker can do:</strong></p>
+    <ul>
+      <li>Skip authorization checks (overwrite auth flag to non-zero) — attacks Confidentiality & Integrity</li>
+      <li>Redirect execution to privileged code — attacks Confidentiality & Integrity</li>
+      <li>Corrupt return address → crash the service — attacks Availability</li>
+    </ul>
+    <div class="box green">
+      <label>Defenses</label>
+      Check sizes before copying (validate input length fits buffer) ·
+      Use SAFE library functions: <code>strncpy</code>, <code>fgets</code> instead of <code>strcpy</code>, <code>gets</code> ·
+      Use memory-safe languages: Rust, Go, Java (eliminate class of bugs entirely)
+    </div>
+
+    <hr>
+
+    <h3 class="red">Attack 4: SQL Injection</h3>
+    <p><strong>What:</strong> User input becomes part of the SQL query logic itself when queries are built by string concatenation.</p>
+    <pre>-- Normal login query:
+SELECT * FROM users WHERE username = 'USER' AND password = 'PASS';
+
+-- Attack: username = "Rahim'--"  password = "anything"
+SELECT * FROM users WHERE username = 'Rahim'--' AND password = 'anything';
+-- The '--' comments out the password check → logs in without valid password!</pre>
+    <div class="box green">
+      <label>Defenses</label>
+      Use <strong>Prepared Statements / Parameterized Queries</strong> (never concatenate user input into SQL) ·
+      Input validation and sanitization ·
+      Principle of least privilege for DB accounts ·
+      Web Application Firewall (WAF)
+    </div>
+
+    <h3 class="pink">Summary: Attacks vs CIA Triad</h3>
+    <table>
+      <thead><tr><th>Attack</th><th>Primary CIA Target</th></tr></thead>
+      <tbody>
+        <tr><td>Brute Force</td><td>Confidentiality</td></tr>
+        <tr><td>DoS / DDoS</td><td>Availability</td></tr>
+        <tr><td>Buffer Overflow (skip auth)</td><td>Confidentiality + Integrity</td></tr>
+        <tr><td>Buffer Overflow (crash)</td><td>Availability</td></tr>
+        <tr><td>SQL Injection</td><td>Confidentiality + Integrity</td></tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ======================== REVISION SHEET ======================== -->
+<div class="revision" id="revision">
+  <h2 style="font-family:var(--heading);font-size:26px;color:var(--accent3);margin-bottom:16px;">One-Page Quick Reference</h2>
+  <div class="rev-grid">
+    <div class="rev-col">
+      <h4>Bug Rules (5)</h4>
+      <ul>
+        <li>Missing specified functionality</li>
+        <li>Prohibited behavior</li>
+        <li>Unspecified actions</li>
+        <li>Missing obvious requirements</li>
+        <li>User experience issues</li>
+      </ul>
+    </div>
+    <div class="rev-col">
+      <h4>7 Testing Realities</h4>
+      <ul>
+        <li>Can't test completely · Risk-based</li>
+        <li>Can't prove bugs don't exist</li>
+        <li>More bugs = more nearby</li>
+        <li>Pesticide Paradox (keep writing new tests!)</li>
+        <li>Specs never final · Not all bugs fixed</li>
+      </ul>
+    </div>
+    <div class="rev-col">
+      <h4>EP Formulas</h4>
+      <ul>
+        <li>Weak ECT = max(|A|, |B|, |C|)</li>
+        <li>Strong ECT = |A| × |B| × |C|</li>
+        <li>NextDate: Weak=4, Strong=36</li>
+        <li>Quad: 4 behavioral partitions</li>
+        <li>Always: E (valid) + U (invalid) partitions</li>
+      </ul>
+    </div>
+    <div class="rev-col">
+      <h4>BVT Formula</h4>
+      <ul>
+        <li>Test cases = 4n + 1 (n = # variables)</li>
+        <li>7 points: BLB, LB, ALB, NOM, BUB, UB, AUB</li>
+        <li>Hold all vars at NOM; vary one at a time</li>
+        <li>Sub-boundaries: powers of 2, ASCII edges</li>
+        <li>Empty/Null = separate partition</li>
+      </ul>
+    </div>
+    <div class="rev-col">
+      <h4>Code Coverage</h4>
+      <ul>
+        <li>Statement: every line executed once</li>
+        <li>Branch: every if-true AND if-false tested</li>
+        <li>Condition: all T/F combos of compound conditions</li>
+        <li>Driver = bottom-up; Stub = top-down</li>
+      </ul>
+    </div>
+    <div class="rev-col">
+      <h4>Performance Testing Types</h4>
+      <ul>
+        <li>Load → expected users</li>
+        <li>Stress → find breaking point</li>
+        <li>Endurance/Soak → memory leak detection</li>
+        <li>Spike → sudden traffic surge</li>
+        <li>Scalability → adding resources</li>
+      </ul>
+    </div>
+    <div class="rev-col">
+      <h4>CIA Triad + Attacks</h4>
+      <ul>
+        <li>Brute Force → Confidentiality</li>
+        <li>DoS/DDoS → Availability</li>
+        <li>Buffer Overflow → C+I or A</li>
+        <li>SQL Injection → C+I</li>
+        <li>Key defense: Parameterized Queries, strncpy, Rate Limiting, MFA</li>
+      </ul>
+    </div>
+    <div class="rev-col">
+      <h4>JUnit Key Facts</h4>
+      <ul>
+        <li>Expected on LEFT in assertEquals</li>
+        <li>@Test, @Ignore annotations</li>
+        <li>No guaranteed execution order</li>
+        <li>fail() = mark test incomplete</li>
+        <li>Green bar = pass; Red = fail</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ======================== VIVA QUESTIONS ======================== -->
+<div class="viva" id="viva">
+  <h2>❓ Exam / Viva Questions</h2>
+
+  <div class="vq">1. Define software testing. How is it different from debugging?</div>
+  <div class="vq">2. List and explain the 5 rules that define a software bug with examples.</div>
+  <div class="vq">3. What are the main causes of software bugs? Which is the most common?</div>
+  <div class="vq">4. Explain the Pesticide Paradox. How do you overcome it?</div>
+  <div class="vq">5. Why is it impossible to completely test a software? Give 4 reasons.</div>
+  <div class="vq">6. What is the difference between black-box and white-box testing? What is the risk of white-box?</div>
+  <div class="vq">7. What is static testing? What is dynamic testing? Give examples of each.</div>
+  <div class="vq">8. What is Equivalence Partitioning? Why is it effective?</div>
+  <div class="vq">9. Differentiate between Weak ECT and Strong ECT with formulas. Give an example with 3 variables.</div>
+  <div class="vq">10. Apply EP to the Leap Year function — list all 4 equivalence classes with examples.</div>
+  <div class="vq">11. Apply EP to the Quadratic Equation Solver — what are the 4 behavioral partitions?</div>
+  <div class="vq">12. What is Boundary Value Testing? List the 7 boundary points. What is the formula for total test cases?</div>
+  <div class="vq">13. What are sub-boundary conditions? Give examples with ASCII and powers of 2.</div>
+  <div class="vq">14. Why should Empty/Null inputs be a separate equivalence class?</div>
+  <div class="vq">15. List the 8 attributes of a good product specification (mnemonic!).</div>
+  <div class="vq">16. What terminology in specs signals danger? Give 6 categories with examples.</div>
+  <div class="vq">17. What is a formal review? What are the 4 essential elements? Compare Peer Review, Walkthrough, Inspection.</div>
+  <div class="vq">18. What is Statement, Branch, and Condition Coverage? Explain with the same code example.</div>
+  <div class="vq">19. What is the difference between a Test Driver and a Test Stub? When do you use each?</div>
+  <div class="vq">20. List all JUnit assert methods and what condition causes each to fail.</div>
+  <div class="vq">21. What is the CIA Triad? Explain each pillar with a violation example.</div>
+  <div class="vq">22. How does a Buffer Overflow attack work? Show with a code example. What does an attacker do with it?</div>
+  <div class="vq">23. How does SQL Injection work? Write the attack payload and explain. How do you prevent it?</div>
+  <div class="vq">24. What is the difference between DoS and DDoS? List 4 defenses against each.</div>
+  <div class="vq">25. Compare Load Testing, Stress Testing, Endurance Testing, Spike Testing, and Scalability Testing.</div>
+  <div class="vq">26. What metrics does JMeter measure? How do you configure it for a load test vs stress test?</div>
+  <div class="vq">27. What is Alpha testing vs Beta testing? Who conducts each and in what environment?</div>
+  <div class="vq">28. Explain the Mars Climate Orbiter failure. What testing lesson does it illustrate?</div>
+</div>
+
+</div><!-- /content -->
+
+<div style="text-align:center;padding:20px 0 40px;font-family:var(--mono);font-size:11px;color:var(--border);">
+  Software Testing · CSE · JYK · BUET · Good luck! 🚀
+</div>
+
+</body>
+</html>
